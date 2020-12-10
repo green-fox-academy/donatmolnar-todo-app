@@ -12,14 +12,14 @@ let todoList = new TodoList;
 
 if (process.argv[2] === '-l') {
   //list all the tasks
-  console.log('list the tasks');
   console.log('\n' + todoList.printList());
+  console.log('list the tasks');
   
   
 } else if (process.argv[2] === '-a') {
   //adds a new task
-  todoList.addTodo(new Todo (process.argv[3]))
-  console.log('adds a new task');
+  todoList.addToTodoList(new Todo (process.argv[3]));
+  console.log('new task added successfully');
   console.log(todoList.printList());
 
   
@@ -37,8 +37,10 @@ if (process.argv[2] === '-l') {
   let completedTask = process.argv[3];
   console.log(completedTask);
   
+} else if (process.argv[2] !== undefined) {
+ //invalid argument
+  console.log('Unsupported argument');
   
-
 } else {  
 console.log('\nCommand Line Todo application\n=============================\n');
 console.log('Command line arguments:');
@@ -47,10 +49,3 @@ console.log('-a   Adds a new task');
 console.log('-r   Removes a task');
 console.log('-c   Completes a task');
 }
-
-
-//let userData = fs.readFileSync('./userdata', 'utf-8');
-//console.log(userData);
-
-//let fileContent = 'I can write';
-//fs.writeFileSync('message.txt', fileContent);

@@ -8,9 +8,11 @@ export class Todo {
 
   constructor(name: string) {
     this._name = name;
+    this._completed = false;
 
     try {
-      fs.appendFileSync('./user-data.txt', name + '\n');
+      //write in file to add todo
+      fs.appendFileSync('./user-data.txt', '\n' + name);
     } catch (e) {
       console.log('Error: Unable to write in the file');
     }
@@ -28,7 +30,7 @@ export class Todo {
     return this._completed;
   }
 
-  public todo(): string {
+  public printTodo(): string {
     return `[${this._completed ? 'x' : ' '}] ${this._name}`;
   }
 }
