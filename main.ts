@@ -1,5 +1,8 @@
 'use strict';
 
+import { TodoList } from './todo-list';
+import { Todo } from './todo';
+
 const fs = require('fs');
 
 if (process.argv[2] === '-l') {
@@ -41,3 +44,14 @@ console.log('-c   Completes a task');
 
 //let userData = fs.readFileSync('./userdata', 'utf-8');
 //console.log(userData);
+
+//let fileContent = 'I can write';
+//fs.writeFileSync('message.txt', fileContent);
+
+let todoList = new TodoList;
+
+todoList.addTodo(new Todo (process.argv[3]))
+
+todoList.getList()[0].complete();
+
+console.log('\n' + todoList.printList());
