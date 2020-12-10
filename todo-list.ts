@@ -2,6 +2,8 @@
 
 import { Todo } from "./todo";
 
+const fs = require('fs');
+
 export class TodoList {
   private _todoList: Todo [];
 

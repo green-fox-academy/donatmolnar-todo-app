@@ -5,16 +5,23 @@ import { Todo } from './todo';
 
 const fs = require('fs');
 
+let todoList = new TodoList;
+
+//todoList.getList()[0].complete();
+
+
 if (process.argv[2] === '-l') {
   //list all the tasks
   console.log('list the tasks');
+  console.log('\n' + todoList.printList());
   
-
+  
 } else if (process.argv[2] === '-a') {
   //adds a new task
+  todoList.addTodo(new Todo (process.argv[3]))
   console.log('adds a new task');
-  let newTask: string = process.argv[3];
-  console.log(newTask);
+  console.log(todoList.printList());
+
   
 
 } else if (process.argv[2] === '-r') {
@@ -47,11 +54,3 @@ console.log('-c   Completes a task');
 
 //let fileContent = 'I can write';
 //fs.writeFileSync('message.txt', fileContent);
-
-let todoList = new TodoList;
-
-todoList.addTodo(new Todo (process.argv[3]))
-
-todoList.getList()[0].complete();
-
-console.log('\n' + todoList.printList());

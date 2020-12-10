@@ -1,11 +1,19 @@
 'use strict';
 
+const fs = require('fs');
+
 export class Todo {
   private _name: string;
   private _completed: boolean;
 
   constructor(name: string) {
     this._name = name;
+
+    try {
+      fs.appendFileSync('./user-data.txt', name + '\n');
+    } catch (e) {
+      console.log('Error: Unable to write in the file');
+    }
   }
 
   public getTodo(): string {
@@ -16,7 +24,7 @@ export class Todo {
     this._completed = true;
   }
 
-  public getCompleted(): boolean {
+  public isCompleted(): boolean {
     return this._completed;
   }
 
