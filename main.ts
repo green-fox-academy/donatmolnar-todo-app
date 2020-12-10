@@ -13,8 +13,6 @@ let todoList = new TodoList;
 if (process.argv[2] === '-l') {
   //list all the tasks
   console.log('\n' + todoList.printList());
-  console.log('list the tasks');
-  
   
 } else if (process.argv[2] === '-a') {
   //adds a new task
@@ -22,13 +20,11 @@ if (process.argv[2] === '-l') {
   console.log('new task added successfully');
   console.log(todoList.printList());
 
-  
-
 } else if (process.argv[2] === '-r') {
   //removes a task
-  console.log('removes a task');
-  let removeTask: string = process.argv[3];
-  console.log(removeTask);
+  todoList.remove(process.argv[3]);
+  
+  console.log(todoList.printList());
   
 
 } else if (process.argv[2] === '-c') {

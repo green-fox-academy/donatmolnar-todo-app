@@ -11,21 +11,21 @@ export class TodoList {
     this._todoList = [];
   }
 
-  addToTodoList(todo: Todo): void {
+  public addToTodoList(todo: Todo): void {
     this._todoList.push(todo);
   }
 
-  getList(): Todo [] {
+  public getList(): Todo [] {
     try {
       //read from file to print todo
       this._todoList = Object.values(fs.readFileSync('./user-data.txt', 'utf-8').split('\n'));
       return this._todoList;
     } catch (e) {
-      console.log('Error: unable to read user-data.txt');
+      console.log('Error at getList(): unable to read user-data.txt');
     }
   }
 
-  printList(): string {
+  public printList(): string {
     try {
       //read from file to print todo
      this._todoList = Object.values(fs.readFileSync('./user-data.txt', 'utf-8').split('\n'));
@@ -34,7 +34,18 @@ export class TodoList {
       .map((todo, index) => `${index + 1}. [${this._todoList[index].isCompleted ? 'x' : ' '}] ${this._todoList[index]}`)
       .join('\n');
     } catch (e) {
-      console.log('Error: unable to read user-data.txt');
+      console.log('Error at printList(): unable to read user-data.txt');
     }
   }
+
+  public remove(input: string): void {
+    try {
+      this._todoList = Object.values(fs.readFileSync('./user-data.txt', 'utf-8').split('\n'));
+      console.log(this._todoList.toString().replace(','+ input, '').replace(',', '\n'));
+      fs.writeFileSync('./user-data.txt', this._todoList.toString().replace(','+ input, '').replace(',', '\n'));
+  } catch (e) {
+    console.log('Error at remove(): unable to read user-data.txt');
+  }
+  }
+
 }
